@@ -84,3 +84,10 @@ nav a.active {
 #about-page ul { list-style: none; padding: 0; text-align: left; display: inline-block; }
 #about-page li { margin-bottom: 1em; font-size: 1.1em; }
 #about-page li span { font-weight: bold; color: rgba(255,255,255,0.8); margin-right: 1em; }
+
+.poem {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 1.5em;
+    color: rgba(255,255,255,0.9);
+}
