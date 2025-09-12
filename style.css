@@ -68,9 +68,41 @@ nav a.active {
 .petal:nth-child(1) { left: 5%; animation-duration: 15s, 5s; animation-delay: 0s; } .petal:nth-child(2) { left: 15%; animation-duration: 12s, 4s; animation-delay: 2s; } .petal:nth-child(3) { left: 25%; animation-duration: 18s, 6s; animation-delay: 1s; } .petal:nth-child(4) { left: 35%; animation-duration: 14s, 5s; animation-delay: 4s; } .petal:nth-child(5) { left: 45%; animation-duration: 20s, 7s; animation-delay: 0.5s; } .petal:nth-child(6) { left: 55%; animation-duration: 13s, 4s; animation-delay: 2.5s; } .petal:nth-child(7) { left: 65%; animation-duration: 16s, 6s; animation-delay: 3s; } .petal:nth-child(8) { left: 75%; animation-duration: 11s, 3s; animation-delay: 1.5s; } .petal:nth-child(9) { left: 85%; animation-duration: 19s, 7s; animation-delay: 0.2s; } .petal:nth-child(10) { left: 95%; animation-duration: 14s, 5s; animation-delay: 4.5s; } .petal:nth-child(11) { left: 10%; animation-duration: 17s, 6s; animation-delay: 5s; } .petal:nth-child(12) { left: 20%; animation-duration: 13s, 4s; animation-delay: 6s; } .petal:nth-child(13) { left: 40%; animation-duration: 15s, 5s; animation-delay: 7s; } .petal:nth-child(14) { left: 60%; animation-duration: 18s, 6s; animation-delay: 8s; } .petal:nth-child(15) { left: 80%; animation-duration: 12s, 4s; animation-delay: 9s; }
 
 /* Page 2: Gallery */
-#main-page { background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://source.unsplash.com/1920x1080/?portrait,monochrome,dramatic,actress'); background-size: 100%; background-position: center; animation: ken-burns 40s infinite alternate ease-in-out; }
-@keyframes ken-burns { from { background-size: 100%; background-position: 50% 50%; } to { background-size: 115%; background-position: 45% 45%; } }
-.artist-name { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); color: rgba(255, 255, 255, 0.7); font-family: 'Cinzel', serif; font-size: 1.6em; letter-spacing: 0.3em; text-shadow: 0 0 15px #000; }
+#main-page {
+    overflow-y: auto; /* Allow scrolling for the gallery */
+    background: #1a1a1a; /* A dark background for the gallery */
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 15px;
+    padding: 15px;
+    padding-top: 80px; /* Add padding to avoid nav bar */
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover img {
+    opacity: 0.9;
+}
 
 /* Page 3 & 4: Poems & About */
 #poems-page, #about-page {
