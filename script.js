@@ -43,36 +43,4 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetId = window.location.hash || '#landing-page';
         showPage(targetId);
     });
-
-    // --- Lightbox Functionality ---
-    const lightbox = document.getElementById('lightbox');
-    if (lightbox) {
-        const lightboxImg = document.getElementById('lightbox-img');
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const closeBtn = document.querySelector('.lightbox-close');
-
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const imgSrc = item.querySelector('img').src;
-                lightboxImg.src = imgSrc;
-                lightbox.style.display = 'flex';
-                document.body.classList.add('lightbox-open');
-            });
-        });
-
-        const closeLightbox = () => {
-            lightbox.style.display = 'none';
-            document.body.classList.remove('lightbox-open');
-        };
-
-        // Close by clicking the close button or the background
-        if (closeBtn) {
-            closeBtn.addEventListener('click', closeLightbox);
-        }
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-    }
 });
