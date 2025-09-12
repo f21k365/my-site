@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&family=Cinzel:wght@400;700&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Lora', serif;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    z-index: 100;
+}
+nav a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1em;
+    font-family: 'Cinzel', serif;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+nav a:hover {
+    color: #fff;
+}
+nav a.active {
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Page switching logic */
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease-in-out;
+}
+.page.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* --- Page Specific Styles --- */
+
+/* Page 1: Landing */
+#landing-page {
+    background: linear-gradient(-45deg, #fcecfc, #f2c1d1, #d3a5d8, #c71585);
+    background-size: 400% 400%;
+    animation: gradient-animation 20s ease infinite;
+}
+@keyframes gradient-animation { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+#landing-page .text-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; }
+#landing-page .text-container h1 { font-family: 'Cinzel', serif; font-size: 4.5em; margin: 0; text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); }
+#landing-page .text-container p { font-size: 1.8em; margin-top: 0.5em; text-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
+.petals-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: 1; }
+.petal { position: absolute; background: #ffc0cb; width: 12px; height: 18px; border-radius: 0 50% 0 50%; top: -10%; opacity: 0.8; animation: fall linear infinite, sway linear infinite; }
+.petal::after { content: ''; position: absolute; width: 100%; height: 100%; background: #f2c1d1; border-radius: 50% 0 50% 0; transform: rotate(30deg); opacity: 0.9; }
+@keyframes fall { to { transform: translateY(105vh); } }
+@keyframes sway { 0%, 100% { transform: translateX(0) rotate(0); } 50% { transform: translateX(80px) rotate(200deg); } }
+.petal:nth-child(1) { left: 5%; animation-duration: 15s, 5s; animation-delay: 0s; } .petal:nth-child(2) { left: 15%; animation-duration: 12s, 4s; animation-delay: 2s; } .petal:nth-child(3) { left: 25%; animation-duration: 18s, 6s; animation-delay: 1s; } .petal:nth-child(4) { left: 35%; animation-duration: 14s, 5s; animation-delay: 4s; } .petal:nth-child(5) { left: 45%; animation-duration: 20s, 7s; animation-delay: 0.5s; } .petal:nth-child(6) { left: 55%; animation-duration: 13s, 4s; animation-delay: 2.5s; } .petal:nth-child(7) { left: 65%; animation-duration: 16s, 6s; animation-delay: 3s; } .petal:nth-child(8) { left: 75%; animation-duration: 11s, 3s; animation-delay: 1.5s; } .petal:nth-child(9) { left: 85%; animation-duration: 19s, 7s; animation-delay: 0.2s; } .petal:nth-child(10) { left: 95%; animation-duration: 14s, 5s; animation-delay: 4.5s; } .petal:nth-child(11) { left: 10%; animation-duration: 17s, 6s; animation-delay: 5s; } .petal:nth-child(12) { left: 20%; animation-duration: 13s, 4s; animation-delay: 6s; } .petal:nth-child(13) { left: 40%; animation-duration: 15s, 5s; animation-delay: 7s; } .petal:nth-child(14) { left: 60%; animation-duration: 18s, 6s; animation-delay: 8s; } .petal:nth-child(15) { left: 80%; animation-duration: 12s, 4s; animation-delay: 9s; }
+
+/* Page 2: Gallery */
+#main-page { background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://source.unsplash.com/1920x1080/?portrait,monochrome,dramatic,actress'); background-size: 100%; background-position: center; animation: ken-burns 40s infinite alternate ease-in-out; }
+@keyframes ken-burns { from { background-size: 100%; background-position: 50% 50%; } to { background-size: 115%; background-position: 45% 45%; } }
+.artist-name { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); color: rgba(255, 255, 255, 0.7); font-family: 'Cinzel', serif; font-size: 1.6em; letter-spacing: 0.3em; text-shadow: 0 0 15px #000; }
+
+/* Page 3 & 4: Poems & About */
+#poems-page, #about-page {
+    background: linear-gradient(-45deg, #fcecfc, #f2c1d1, #d3a5d8, #c71585);
+    background-size: 400% 400%;
+    animation: gradient-animation 20s ease infinite;
+}
+.content-container { color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 80%; max-width: 600px; background: rgba(0,0,0,0.15); padding: 2em; border-radius: 15px; backdrop-filter: blur(5px); }
+.content-container h2 { font-family: 'Cinzel', serif; font-size: 2.5em; margin-bottom: 1em; text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); }
+.placeholder { font-style: italic; color: rgba(255,255,255,0.8); }
+#about-page ul { list-style: none; padding: 0; text-align: left; display: inline-block; }
+#about-page li { margin-bottom: 1em; font-size: 1.1em; }
+#about-page li span { font-weight: bold; color: rgba(255,255,255,0.8); margin-right: 1em; }
