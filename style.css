@@ -124,3 +124,16 @@ nav a.active {
     margin-bottom: 2.5em;
     color: rgba(255,255,255,0.9);
 }
+
+.artist-signature {
+    text-align: center;
+    padding: 40px 15px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.artist-signature p {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5em;
+    margin: 0;
+    letter-spacing: 0.1em;
+}
