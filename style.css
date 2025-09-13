@@ -4,9 +4,14 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: hidden; /* Hidden by default */
     background: #000;
     font-family: 'Lora', serif;
+}
+
+/* Allow body to scroll ONLY when gallery is active */
+body.gallery-active {
+    overflow: auto;
 }
 
 /* Navigation */
@@ -48,6 +53,14 @@ nav a.active {
     pointer-events: auto;
 }
 
+/* When body is scrolling, #main-page should be part of the flow */
+body.gallery-active #main-page {
+    position: static;
+    height: auto;
+    min-height: 100vh;
+}
+
+
 /* --- Page Specific Styles --- */
 
 /* Page 1: Landing */
@@ -67,42 +80,27 @@ nav a.active {
 @keyframes sway { 0%, 100% { transform: translateX(0) rotate(0); } 50% { transform: translateX(80px) rotate(200deg); } }
 .petal:nth-child(1) { left: 5%; animation-duration: 15s, 5s; animation-delay: 0s; } .petal:nth-child(2) { left: 15%; animation-duration: 12s, 4s; animation-delay: 2s; } .petal:nth-child(3) { left: 25%; animation-duration: 18s, 6s; animation-delay: 1s; } .petal:nth-child(4) { left: 35%; animation-duration: 14s, 5s; animation-delay: 4s; } .petal:nth-child(5) { left: 45%; animation-duration: 20s, 7s; animation-delay: 0.5s; } .petal:nth-child(6) { left: 55%; animation-duration: 13s, 4s; animation-delay: 2.5s; } .petal:nth-child(7) { left: 65%; animation-duration: 16s, 6s; animation-delay: 3s; } .petal:nth-child(8) { left: 75%; animation-duration: 11s, 3s; animation-delay: 1.5s; } .petal:nth-child(9) { left: 85%; animation-duration: 19s, 7s; animation-delay: 0.2s; } .petal:nth-child(10) { left: 95%; animation-duration: 14s, 5s; animation-delay: 4.5s; } .petal:nth-child(11) { left: 10%; animation-duration: 17s, 6s; animation-delay: 5s; } .petal:nth-child(12) { left: 20%; animation-duration: 13s, 4s; animation-delay: 6s; } .petal:nth-child(13) { left: 40%; animation-duration: 15s, 5s; animation-delay: 7s; } .petal:nth-child(14) { left: 60%; animation-duration: 18s, 6s; animation-delay: 8s; } .petal:nth-child(15) { left: 80%; animation-duration: 12s, 4s; animation-delay: 9s; }
 
-/* Page 2: Gallery */
+/* Page 2: Gallery (Simplified) */
 #main-page {
-    overflow-y: auto; /* Allow scrolling for the gallery */
-    background: #1a1a1a; /* A dark background for the gallery */
+    background: #1a1a1a;
 }
 
 .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 15px;
-    padding: 15px;
-    padding-top: 80px; /* Add padding to avoid nav bar */
+    padding-top: 80px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .gallery-item {
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
-    aspect-ratio: 4 / 3;
-}
-
-.gallery-item:hover {
-    transform: scale(1.05);
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .gallery-item img {
+    max-width: 100%;
+    height: auto;
     display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 0.3s ease;
-}
-
-.gallery-item:hover img {
-    opacity: 0.9;
+    margin: 0 auto;
 }
 
 /* Page 3 & 4: Poems & About */
@@ -123,22 +121,4 @@ nav a.active {
     line-height: 1.8;
     margin-bottom: 2.5em;
     color: rgba(255,255,255,0.9);
-}
-
-.artist-signature {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    padding: 20px 0;
-    color: rgba(255, 255, 255, 0.6);
-    background: linear-gradient(to top, rgba(26, 26, 26, 1), rgba(26, 26, 26, 0));
-}
-
-.artist-signature p {
-    font-family: 'Cinzel', serif;
-    font-size: 1.5em;
-    margin: 0;
-    letter-spacing: 0.1em;
 }

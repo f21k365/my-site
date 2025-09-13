@@ -19,6 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Conditionally enable body scrolling for gallery
+        if (targetId === '#main-page') {
+            document.body.classList.add('gallery-active');
+        } else {
+            document.body.classList.remove('gallery-active');
+        }
+
         // Update URL hash
         if (window.location.hash !== targetId) {
             window.history.pushState(null, '', targetId);
