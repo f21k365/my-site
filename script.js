@@ -4,11 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const langSwitchers = document.querySelectorAll('.lang-switcher a');
 
     function setLanguage(lang) {
-        // document.documentElement.lang = lang;
+        document.documentElement.lang = lang;
         localStorage.setItem('lang', lang);
 
         // Show/hide elements based on lang attribute
-        document.querySelectorAll('#message-page [lang], #about-page [lang], nav a[href="#message-page"] [lang], nav a[href="#about-page"] [lang]').forEach(el => {
+        document.querySelectorAll('[lang]').forEach(el => {
             if (el.lang === lang) {
                 el.style.display = '';
             } else {
