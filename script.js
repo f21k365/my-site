@@ -1,6 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('nav a');
+    const navLinks = document.querySelectorAll('nav a:not(.lang-switcher a)');
     const pages = document.querySelectorAll('.page');
+    const langSwitchers = document.querySelectorAll('.lang-switcher a');
+
+    function setLanguage(lang) {
+        // document.documentElement.lang = lang;
+        localStorage.setItem('lang', lang);
+
+        // Show/hide elements based on lang attribute
+        document.querySelectorAll('#message-page [lang], #about-page [lang], nav a[href="#message-page"] [lang], nav a[href="#about-page"] [lang]').forEach(el => {
+            if (el.lang === lang) {
+                el.style.display = '';
+            } else {
+                el.style.display = 'none';
+            }
+        });
+
+        // Update active class on switcher
+        langSwitchers.forEach(switcher => {
+            if (switcher.dataset.lang === lang) {
+                switcher.classList.add('active');
+            } else {
+                switcher.classList.remove('active');
+            }
+        });
+    }
 
     function showPage(targetId) {
         // Update page active state
@@ -32,9 +56,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Language switcher handling
+    langSwitchers.forEach(switcher => {
+        switcher.addEventListener('click', (e) => {
+            e.preventDefault();
+            setLanguage(switcher.dataset.lang);
+        });
+    });
+
     // Initial page load
     const initialPageId = window.location.hash || '#landing-page';
     showPage(initialPageId);
+
+    // Set initial language
+    const savedLang = localStorage.getItem('lang') || 'ja';
+    setLanguage(savedLang);
 
     // Navigation click handling
     navLinks.forEach(link => {
