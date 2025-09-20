@@ -103,7 +103,12 @@ body.gallery-active #main-page {
 /* Added comment to force rebuild */
 
 /* Page 1: Landing */
-#landing-page, #message-page, #about-page, #philosophy-page {
+#landing-page, #message-page, #about-page {
+    background: linear-gradient(-45deg, #fcecfc, #f2c1d1, #d3a5d8, #c71585);
+    background-size: 400% 400%;
+    animation: gradient-animation 20s ease infinite;
+}
+#philosophy-page {
     background: linear-gradient(-45deg, #fcecfc, #f2c1d1, #d3a5d8, #c71585);
     background-size: 400% 400%;
     animation: gradient-animation 20s ease infinite;
