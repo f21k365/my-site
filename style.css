@@ -51,6 +51,13 @@ nav a.active {
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
+.brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: 2.0em;
+    color: #fff;
+    flex-grow: 1;
+}
+
 .lang-switcher {
     margin-left: auto;
 }
