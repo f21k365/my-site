@@ -86,4 +86,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetId = window.location.hash || '#landing-page';
         showPage(targetId);
     });
+
+    // Create cherry blossom petals
+    const petalsContainer = document.querySelector('.petals-container');
+    const numberOfPetals = 30;
+
+    for (let i = 0; i < numberOfPetals; i++) {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        
+        const size = Math.random() * 10 + 5; // 5px to 15px
+        const initialX = Math.random() * 100;
+        const duration = Math.random() * 10 + 10; // 10s to 20s
+        const delay = Math.random() * 10;
+
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size * 0.7}px`;
+        petal.style.left = `${initialX}vw`;
+        petal.style.animationDuration = `${duration}s`;
+        petal.style.animationDelay = `${delay}s`;
+        
+        petalsContainer.appendChild(petal);
+    }
 });
