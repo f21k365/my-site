@@ -58,57 +58,61 @@ document.addEventListener('DOMContentLoaded', () => {
         showPage(targetId);
     });
 
-    // Create cherry blossom petals with new logic
-    const petalsContainer = document.querySelector('.petals-container');
-    if (petalsContainer) {
-        const numberOfPetals = 30;
+    // Create cherry blossom petals for relevant pages
+    document.querySelectorAll('.petals-container').forEach(container => {
+        const parentId = container.closest('.page').id;
+        let numberOfPetals = 0;
 
-        for (let i = 0; i < numberOfPetals; i++) {
-            const petal = document.createElement('div');
-            petal.classList.add('petal');
-            
-            // 1. Vary petal sizes (subtler range)
-            const size = Math.random() * 5 + 8; // 8px to 13px
-            
-            // 2. Slow down the fall speed
-            const duration = Math.random() * 15 + 20; // 20s to 35s
-            
-            const initialX = Math.random() * 100;
-            const delay = Math.random() * 15;
-
-            petal.style.width = `${size}px`;
-            petal.style.height = `${size * 0.7}px`;
-            petal.style.left = `${initialX}vw`;
-            petal.style.animationDuration = `${duration}s`;
-            petal.style.animationDelay = `${delay}s`;
-
-            // 3. Add lilac-colored petals
-            if (Math.random() < 0.07) { // Approx 2 petals out of 30
-                petal.style.backgroundColor = '#C8A2C8'; // Lilac color
-            }
-            
-            petalsContainer.appendChild(petal);
+        if (parentId === 'landing-page') {
+            numberOfPetals = 30;
+        } else if (parentId === 'message-page' || parentId === 'philosophy-page') {
+            numberOfPetals = 2;
         }
 
-        // 4. React to page scroll (mouse wheel)
-        let currentY = 0;
-        const maxWobble = 25; // Max pixels the container will move up/down
+        if (numberOfPetals > 0) {
+            for (let i = 0; i < numberOfPetals; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                
+                const size = Math.random() * 5 + 8;
+                const duration = Math.random() * 15 + 20;
+                const initialX = Math.random() * 100;
+                const delay = Math.random() * 15;
 
-        window.addEventListener('wheel', (e) => {
-            // Add a small vertical "wobble" based on scroll direction
-            currentY += e.deltaY > 0 ? -4 : 4;
-            currentY = Math.max(-maxWobble, Math.min(maxWobble, currentY)); // Clamp the value
-            petalsContainer.style.transform = `translateY(${currentY}px)`;
-        }, { passive: true });
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size * 0.7}px`;
+                petal.style.left = `${initialX}vw`;
+                petal.style.animationDuration = `${duration}s`;
+                petal.style.animationDelay = `${delay}s`;
 
-        // Add a "friction" effect to slowly return to center
-        setInterval(() => {
-            if (Math.abs(currentY) < 0.5) {
-                currentY = 0;
-            } else {
-                currentY *= 0.96; // Slowly decay the wobble effect
+                // Add lilac-colored petals (rarely)
+                if (Math.random() < 0.07) {
+                    petal.style.backgroundColor = '#C8A2C8';
+                }
+                
+                container.appendChild(petal);
             }
-            petalsContainer.style.transform = `translateY(${currentY}px)`;
-        }, 50);
-    }
+        }
+
+        // Only add the scroll interaction to the landing page container
+        if (parentId === 'landing-page') {
+            let currentY = 0;
+            const maxWobble = 25;
+
+            window.addEventListener('wheel', (e) => {
+                currentY += e.deltaY > 0 ? -4 : 4;
+                currentY = Math.max(-maxWobble, Math.min(maxWobble, currentY));
+                container.style.transform = `translateY(${currentY}px)`;
+            }, { passive: true });
+
+            setInterval(() => {
+                if (Math.abs(currentY) < 0.5) {
+                    currentY = 0;
+                } else {
+                    currentY *= 0.96;
+                }
+                container.style.transform = `translateY(${currentY}px)`;
+            }, 50);
+        }
+    });
 });
