@@ -7,56 +7,31 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.lang = lang;
         localStorage.setItem('lang', lang);
 
-        // Show/hide elements based on lang attribute
         document.querySelectorAll('[lang]').forEach(el => {
-            if (el.lang === lang) {
-                el.style.display = '';
-            } else {
-                el.style.display = 'none';
-            }
+            el.style.display = el.lang === lang ? '' : 'none';
         });
 
-        // Update active class on switcher
         langSwitchers.forEach(switcher => {
-            if (switcher.dataset.lang === lang) {
-                switcher.classList.add('active');
-            } else {
-                switcher.classList.remove('active');
-            }
+            switcher.classList.toggle('active', switcher.dataset.lang === lang);
         });
     }
 
     function showPage(targetId) {
-        // Update page active state
         pages.forEach(page => {
-            page.classList.remove('active');
-            if (`#${page.id}` === targetId) {
-                page.classList.add('active');
-            }
+            page.classList.toggle('active', `#${page.id}` === targetId);
         });
 
-        // Update nav active state
         navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === targetId) {
-                link.classList.add('active');
-            }
+            link.classList.toggle('active', link.getAttribute('href') === targetId);
         });
 
-        // Conditionally enable body scrolling for gallery
-        if (targetId === '#main-page') {
-            document.body.classList.add('gallery-active');
-        } else {
-            document.body.classList.remove('gallery-active');
-        }
+        document.body.classList.toggle('gallery-active', targetId === '#main-page');
 
-        // Update URL hash
         if (window.location.hash !== targetId) {
             window.history.pushState(null, '', targetId);
         }
     }
 
-    // Language switcher handling
     langSwitchers.forEach(switcher => {
         switcher.addEventListener('click', (e) => {
             e.preventDefault();
@@ -64,15 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initial page load
     const initialPageId = window.location.hash || '#landing-page';
     showPage(initialPageId);
 
-    // Set initial language
     const savedLang = localStorage.getItem('lang') || 'ja';
     setLanguage(savedLang);
 
-    // Navigation click handling
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -81,31 +53,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Allow navigating back and forth with browser buttons
     window.addEventListener('popstate', () => {
         const targetId = window.location.hash || '#landing-page';
         showPage(targetId);
     });
 
-    // Create cherry blossom petals
+    // Create cherry blossom petals with new logic
     const petalsContainer = document.querySelector('.petals-container');
-    const numberOfPetals = 30;
+    if (petalsContainer) {
+        const numberOfPetals = 30;
 
-    for (let i = 0; i < numberOfPetals; i++) {
-        const petal = document.createElement('div');
-        petal.classList.add('petal');
-        
-        const size = Math.random() * 10 + 5; // 5px to 15px
-        const initialX = Math.random() * 100;
-        const duration = Math.random() * 10 + 10; // 10s to 20s
-        const delay = Math.random() * 10;
+        for (let i = 0; i < numberOfPetals; i++) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            // 1. Vary petal sizes (subtler range)
+            const size = Math.random() * 5 + 8; // 8px to 13px
+            
+            // 2. Slow down the fall speed
+            const duration = Math.random() * 15 + 20; // 20s to 35s
+            
+            const initialX = Math.random() * 100;
+            const delay = Math.random() * 15;
 
-        petal.style.width = `${size}px`;
-        petal.style.height = `${size * 0.7}px`;
-        petal.style.left = `${initialX}vw`;
-        petal.style.animationDuration = `${duration}s`;
-        petal.style.animationDelay = `${delay}s`;
-        
-        petalsContainer.appendChild(petal);
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size * 0.7}px`;
+            petal.style.left = `${initialX}vw`;
+            petal.style.animationDuration = `${duration}s`;
+            petal.style.animationDelay = `${delay}s`;
+
+            // 3. Add lilac-colored petals
+            if (Math.random() < 0.07) { // Approx 2 petals out of 30
+                petal.style.backgroundColor = '#C8A2C8'; // Lilac color
+            }
+            
+            petalsContainer.appendChild(petal);
+        }
+
+        // 4. React to page scroll (mouse wheel)
+        let currentY = 0;
+        const maxWobble = 25; // Max pixels the container will move up/down
+
+        window.addEventListener('wheel', (e) => {
+            // Add a small vertical "wobble" based on scroll direction
+            currentY += e.deltaY > 0 ? -4 : 4;
+            currentY = Math.max(-maxWobble, Math.min(maxWobble, currentY)); // Clamp the value
+            petalsContainer.style.transform = `translateY(${currentY}px)`;
+        }, { passive: true });
+
+        // Add a "friction" effect to slowly return to center
+        setInterval(() => {
+            if (Math.abs(currentY) < 0.5) {
+                currentY = 0;
+            } else {
+                currentY *= 0.96; // Slowly decay the wobble effect
+            }
+            petalsContainer.style.transform = `translateY(${currentY}px)`;
+        }, 50);
     }
 });
