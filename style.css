@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&family=Cinzel:wght@400;700&display=swap');
+
 html, body {
     height: 100%;
     margin: 0;
@@ -30,14 +32,15 @@ nav a {
     text-decoration: none;
     margin-left: 20px;
     font-size: 1em;
-    font-family: 'Trajan Pro', serif;
+    font-family: 'Cinzel', serif;
     transition: color 0.3s, text-shadow 0.3s;
 }
 
 .brand-name {
-    font-family: 'Trajan Pro', serif;
-    font-size: 2.0em;
+    font-family: 'Cinzel', serif;
+    font-size: 1.5em;
     color: #fff;
+    font-weight: bold;
     flex-grow: 1;
 }
 nav a:hover {
@@ -46,6 +49,13 @@ nav a:hover {
 nav a.active {
     color: #fff;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: 2.0em;
+    color: #fff;
+    flex-grow: 1;
 }
 
 .lang-switcher {
@@ -103,7 +113,7 @@ body.gallery-active #main-page {
 }
 @keyframes gradient-animation { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 #landing-page .text-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; }
-#landing-page .text-container h1 { font-family: 'Trajan Pro', serif; font-size: 4.5em; margin: 0; text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); }
+#landing-page .text-container h1 { font-family: 'Cinzel', serif; font-size: 4.5em; margin: 0; text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); }
 #landing-page .text-container p { font-size: 1.8em; margin-top: 0.5em; text-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
 .petals-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: 1; }
 .petal { position: absolute; top: -20px; width: 15px; height: 10px; background: #ffc0cb; border-radius: 50% 0; opacity: 0.9; animation: fall linear infinite; }
@@ -162,7 +172,7 @@ body.gallery-active #main-page {
     animation: gradient-animation 20s ease infinite;
 }
 .content-container { color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 80%; max-width: 700px; background: rgba(0,0,0,0.15); padding: 2em; border-radius: 15px; backdrop-filter: blur(5px); }
-.content-container h2 { font-family: 'Trajan Pro', serif; font-size: 2.5em; margin-bottom: 1em; text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); }
+.content-container h2 { font-family: 'Cinzel', serif; font-size: 2.5em; margin-bottom: 1em; text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); }
 .placeholder { font-style: italic; color: rgba(255,255,255,0.8); }
 #about-page ul { list-style: none; padding: 0; text-align: left; display: inline-block; }
 #about-page li { margin-bottom: 1em; font-size: 1.1em; }
