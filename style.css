@@ -103,7 +103,7 @@ body.gallery-active #main-page {
 /* Added comment to force rebuild */
 
 /* Page 1: Landing */
-#landing-page {
+#landing-page, #message-page, #about-page, #philosophy-page {
     background: linear-gradient(-45deg, #fcecfc, #f2c1d1, #d3a5d8, #c71585);
     background-size: 400% 400%;
     animation: gradient-animation 20s ease infinite;
@@ -163,11 +163,6 @@ body.gallery-active #main-page {
 }
 
 /* Page 3 & 4: Message & About */
-#message-page, #about-page {
-    background: linear-gradient(-45deg, #fcecfc, #f2c1d1, #d3a5d8, #c71585);
-    background-size: 400% 400%;
-    animation: gradient-animation 20s ease infinite;
-}
 .content-container { color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 80%; max-width: 700px; background: rgba(0,0,0,0.15); padding: 2em; border-radius: 15px; backdrop-filter: blur(5px); }
 .content-container h2 { font-family: 'Cinzel', serif; font-size: 2.5em; margin-bottom: 1em; text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); }
 .placeholder { font-style: italic; color: rgba(255,255,255,0.8); }
