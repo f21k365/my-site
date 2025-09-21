@@ -118,7 +118,41 @@ body.gallery-active #main-page {
 #landing-page .text-container h1 { font-family: 'Cinzel', serif; font-size: 4.5em; margin: 0; text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); }
 #landing-page .text-container p { font-size: 1.8em; margin-top: 0.5em; text-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
 .petals-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: 1; }
-.petal { position: absolute; top: -20px; width: 15px; height: 10px; background: #ffc0cb; border-radius: 50% 0; opacity: 0.9; animation: fall ease-in-out infinite; }
+.petal {
+    position: absolute;
+    top: -20px;
+    /* The main element is now a container, so it's transparent */
+    background: transparent;
+    width: 20px; /* Base width */
+    height: 20px; /* Base height */
+    opacity: 0.9;
+    animation: fall ease-in-out infinite;
+}
+
+.petal::before,
+.petal::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ffc0cb; /* Petal color */
+    border-radius: 50% 50% 0 50%;
+    transform-origin: bottom center;
+}
+
+.petal::before {
+    transform: rotate(-30deg) translateX(-25%);
+}
+
+.petal::after {
+    transform: rotate(30deg) translateX(25%);
+}
+
+/* Lilac color override for both pseudo-elements */
+.petal.lilac::before,
+.petal.lilac::after {
+    background: #C8A2C8;
+}
 
 @keyframes fall {
   0% {
