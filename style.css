@@ -193,3 +193,7 @@ body.gallery-active #main-page {
     margin-bottom: 2.5em;
     color: rgba(248, 248, 248, 0.9);
 }
+
+#philosophy-page .content-container {
+    color: #C8A2C8;
+}
