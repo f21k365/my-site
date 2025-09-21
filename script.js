@@ -74,20 +74,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 const petal = document.createElement('div');
                 petal.classList.add('petal');
                 
-                const size = Math.random() * 15 + 25; // Further increased size
+                const size = Math.random() * 5 + 8;
                 const duration = Math.random() * 15 + 20;
                 const initialX = Math.random() * 100;
                 const delay = Math.random() * 15;
 
                 petal.style.width = `${size}px`;
-                petal.style.height = `${size}px`; // Adjusted for new shape
+                petal.style.height = `${size * 0.7}px`;
                 petal.style.left = `${initialX}vw`;
                 petal.style.animationDuration = `${duration}s`;
                 petal.style.animationDelay = `${delay}s`;
 
                 // Add lilac-colored petals (rarely)
                 if (Math.random() < 0.07) {
-                    petal.classList.add('lilac');
+                    petal.style.backgroundColor = '#C8A2C8';
                 }
                 
                 container.appendChild(petal);
